@@ -1,0 +1,18 @@
+{
+  "en": {
+    "page_count": 9,
+    "table_numeric_values": "passed",
+    "period": "passed",
+    "zero_price_question": "passed",
+    "aspect_ratio": "16:9",
+    "text_on_every_page": true
+  },
+  "zh": {
+    "page_count": 9,
+    "table_numeric_values": "passed",
+    "period": "passed",
+    "zero_price_question": "passed",
+    "aspect_ratio": "16:9",
+    "text_on_every_page": true
+  }
+}

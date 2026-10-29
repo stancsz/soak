@@ -1,0 +1,41 @@
+{
+  "adapter_sources_sha256": {
+    "clinic_integrated_adapter.py": "d7670bd6cc21e64199002786167298834e94948e0ca3c7659cb6bd9c55d289a9",
+    "clinic_codex_adapter.py": "b349c24ce754d29897cd9674cae16648a9bd8b98b4ddb15845afa77737fb04ba",
+    "clinic_render_adapter.py": "17cc86a13835dd279a1ef55535d0e4e293b98362c325ed903cc3e45e66fef5bd"
+  },
+  "visual_review": "unverified",
+  "evidence_category": "fresh_integrated_agent_and_render",
+  "endurance": "unverified",
+  "failure_category": null,
+  "generation": {
+    "status": "passed",
+    "trial_outcome": "passed"
+  },
+  "source_validation": {
+    "status": "passed",
+    "trial_outcome": "passed"
+  },
+  "render": {
+    "status": "passed",
+    "failure_category": null
+  },
+  "mechanical_validation": {
+    "status": "passed",
+    "checks": {
+      "ledger_exact": true,
+      "render_succeeded": true,
+      "english_pdf": true,
+      "chinese_pdf": true,
+      "equal_nonzero_page_counts": true,
+      "deck-en_all_page_images": true,
+      "deck-zh_all_page_images": true
+    },
+    "fresh_ledger_exact": true
+  },
+  "source_to_render_sha256": {
+    "deck-en.md": "e2e06cc76a7f6a942432620da6aa1f30693fcf788ef802094e3f389007deb25b",
+    "deck-zh.md": "2291a7a97a8e127b8d72fc31263ef3da24882787b4fad5d99f162327ac02a75c",
+    "ledger.json": "033a501c8dae56a543659ca6bbe10ac514b9ccdee665584d21a45cd698eeb537"
+  }
+}

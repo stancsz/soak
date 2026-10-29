@@ -59,3 +59,7 @@ The agent skill is a separate source artifact at `skills/soak-testing/SKILL.md`;
 ## Render and inspect bilingual demos
 
 `python -m soak.trial examples/clinic-render.json --output runs/clinic-render` renders the retained synthetic agent drafts using locally installed Marp and Poppler. Missing dependencies produce an explicit failure receipt. Every page is rasterized; mechanical success leaves visual review unverified until a reviewer inspects the actual pages. See [the rendering guide](docs/rendered-clinic-trials.md) and [the scoped validation receipt](docs/rendered-clinic-validation.json). This is a rendering trial over retained sources, not fresh agent generation or generated UI mockups.
+
+## Fresh integrated clinic trial
+
+`python -m soak.trial examples/clinic-integrated.json --output runs/clinic-integrated` runs fresh approved synthetic source generation, source validation, bilingual PDF rendering and mechanical validation in one isolated workspace. Requires the native Codex executable environment variable and local rendering dependencies described in [the integration guide](docs/integrated-clinic-trials.md). Stage failures retain their receipts; original source hashes and styled derivatives are checked separately. [The scoped acceptance record](docs/integrated-clinic-validation.json) includes one real integrated trial and review of all 18 pages. This does not establish endurance or finished UI-demo quality.

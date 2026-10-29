@@ -1,0 +1,12 @@
+{
+  "codex_cli_version": "codex-cli 0.154.0",
+  "model_alias": "codex-luna",
+  "provider_profile": "subroute-subagents",
+  "provider": "subroute",
+  "endpoint": "http://127.0.0.1:4000/v1",
+  "task_brief_sha256": "ab59185c9d4716018c76c30e63364f3d0945ed610a018f3587eb847db38c7ca0",
+  "prompt_sha256": "498459431eab4b3a63dff56e1e55ef3c1ead584858141f06cb88daf68284ec93",
+  "evidence_category": "real-agent-source-generation",
+  "visual_limits": "source drafts only; no PDF or image generation or validation",
+  "research_limits": "synthetic brief only; no browsing, external research, contacts, or buyer outcome claims"
+}

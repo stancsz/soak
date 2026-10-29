@@ -38,3 +38,7 @@ The configured codex-luna gateway route now has a real CLI generator, separate d
 ## Bilingual rendering acceptance
 
 An isolated Marp/Poppler rendering trial produced eight pages per language, all rasterized and inspected by the parent. The initial run exposed CJK literal emphasis markers; normalization fixed them, and all 16 final pages were reinspected. Numeric/source fingerprints and actual PDF text/page counts were checked independently. Thirty-four regressions pass; actual missing-renderer failure propagates nonzero. See rendered-clinic-validation.json and evidence/clinic-rendered-trial. Generated UI images, a fresh combined generation/render loop, long-duration/resource/load acceptance, comparative ranking and denied skill integration remain open.
+
+## Fresh generation-to-PDF integration
+
+One live isolated trial now covers fresh real-agent sources, source validation, actual rendering of those exact inputs, mechanical validation and independent parent inspection of all 18 pages. Thirty-eight regressions pass. Input hashes, nested validated source hashes, exact ledger bytes and the deterministic styling transformation reconcile. See integrated-clinic-validation.json. A live missing-CLI failure stops before rendering; changing a copy of the live fresh ledger is rejected. Endurance, repeated integrated exposure, generated UI images, resource/load/cost qualification, peer comparison and denied skill integration remain open.

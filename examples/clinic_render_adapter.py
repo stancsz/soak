@@ -76,7 +76,10 @@ def _write_receipt(workspace, receipt):
     (workspace / "render.json").write_text(json.dumps(receipt, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
 
-def generate(workspace):
+def generate(workspace, sources=None):
+    sources = SOURCES if sources is None else {name: Path(path).resolve() for name, path in sources.items()}
+    if set(sources) != set(SOURCES):
+        raise ValueError("sources must provide deck-en.md, deck-zh.md, and ledger.json")
     workspace.mkdir(parents=True, exist_ok=True)
     receipt = {"status": "failed", "failure_category": None, "evidence_category": "render_of_actual_real_agent_synthetic_sources_not_new_agent_generation",
                "visual_review": "unverified", "source_sha256": {}, "versions": {}, "page_counts": {}, "resource_bounds": {"timeout_seconds_per_command": 150, "max_pages_per_pdf": MAX_PAGES, "render_dpi": 150}}
@@ -93,7 +96,7 @@ def generate(workspace):
         receipt["versions"]["marp"] = _version([node, str(marp), "--version"])
         receipt["versions"]["pdfinfo"] = _version([pdfinfo, "-v"])
         receipt["versions"]["pdftoppm"] = _version([pdftoppm, "-v"])
-        for name, source in SOURCES.items():
+        for name, source in sources.items():
             if not source.is_file():
                 receipt["failure_category"] = "approved_source_missing"
                 raise RuntimeError("approved synthetic source missing: " + name)

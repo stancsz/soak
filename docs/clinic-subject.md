@@ -9,3 +9,7 @@ For full workflow trials, use isolated workspaces and record harness/model/skill
 ## First observed run
 
 2026-10-29: 30 seconds, 90 completed artifact audits, zero reported failures, p95 iteration latency 0.1604 seconds. Minimum exposure gates passed. Local receipt: runs/clinic-artifacts-1/summary.json and events.jsonl (ignored runtime artifacts). This is a short read-only regression run against real existing artifacts, not an endurance qualification or repeated generation trial. Six existing tests passed after the run; additional output-limit and interruption regressions were added afterward.
+
+## Current integrated evidence
+
+The latest source-to-PDF acceptance is [integrated-clinic-validation.json](integrated-clinic-validation.json), with retained fresh sources, nested receipts, PDFs, all page images and independent visual/text checks under [evidence/clinic-integrated-trial](evidence/clinic-integrated-trial). One real integrated trial passed; this is not endurance qualification or the full generated-UI-image demo workflow. Earlier artifact replay receipts remain historical evidence of their stated scope.

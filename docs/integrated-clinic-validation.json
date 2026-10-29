@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-29",
+  "tests_passed": 38,
+  "integrated_trials_executed": 1,
+  "pipeline_outcome": "passed",
+  "source_generation": "real Codex CLI through configured subroute profile and codex-luna alias",
+  "source_validation": "passed",
+  "rendering": "passed",
+  "mechanical_validation": "passed",
+  "source_to_render_provenance": "independently reconciled original input hashes and expected styling transformation",
+  "pdf_pages": {
+    "en": 9,
+    "zh": 9
+  },
+  "parent_visual_review": "all 18 pages inspected; passed for clipping, glyphs, formatting, sequence and figures",
+  "evidence_root": "docs/evidence/clinic-integrated-trial",
+  "fault_checks": [
+    "actual missing native CLI: source_generation_failed; render not_run; exit 1",
+    "copy of live fresh ledger changed to 42 visits: independent provenance validation rejected",
+    "unit regression: source validation failure prevents renderer invocation",
+    "unit regression: renderer failure retained in stages and render receipt"
+  ],
+  "implementation_worker": {
+    "route": "http://127.0.0.1:4000/v1",
+    "model_alias": "codex-luna",
+    "executor": "workspace-write",
+    "result": "four-minute deadline exceeded; partial work preserved and parent completed/reviewed fixes"
+  },
+  "endurance": "unverified",
+  "limits": [
+    "one integrated source-and-text-PDF trial only",
+    "custom source protocol; installed demo skill not invoked",
+    "no generated app UI images, actual market research, patient data or buyer validation",
+    "upstream model behind gateway alias unknown",
+    "no comparative ranking or top-percentile claim",
+    "denied skill edits remain unapplied"
+  ]
+}

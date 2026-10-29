@@ -1,0 +1,34 @@
+{
+  "local_command_sources_sha256": {
+    "examples/clinic_codex_adapter.py": "b349c24ce754d29897cd9674cae16648a9bd8b98b4ddb15845afa77737fb04ba"
+  },
+  "artifact_sha256": {
+    "research-note.md": "68880884d568eaf03d997d658830aafaaa5c56c077017c299b2ca21b00c1ed7c",
+    "deck-en.md": "e2e06cc76a7f6a942432620da6aa1f30693fcf788ef802094e3f389007deb25b",
+    "deck-zh.md": "2291a7a97a8e127b8d72fc31263ef3da24882787b4fad5d99f162327ac02a75c",
+    "ledger.json": "033a501c8dae56a543659ca6bbe10ac514b9ccdee665584d21a45cd698eeb537",
+    "runtime.json": "7f3dd80b743e7cc54bc77de4afe75cd80775748e0a17a7e53e1c9453f1a1d152"
+  },
+  "framework_sha256": "c59da4cfc79cf9ef26f3eee900bb36924ed6ba21275f15066cd12ebd57698aef",
+  "created_utc": "2026-10-29T17:31:35.958740+00:00",
+  "git_revision": "be0a0b75e4386950de0bf58ddaa375882c0943ec",
+  "git_dirty": true,
+  "config_sha256": "89d09983a3e93e325f1a8fa577f1af2528e546a065c68b398e4cf4d5ffd60fed",
+  "generation_command_sha256": "2d630d38b6750d459743e82f19b2f947c6fe59cff37cc4f79b7ea0bc7bf177b4",
+  "validation_command_sha256": "93caf13fe763a8c568f055bf13d1fd6746feceaa7369c64936702a082e395d46",
+  "target_revision": "clinic-source-drafts-v1",
+  "harness_revision": "soak-real-agent-source-only-v1",
+  "model_revision": "codex-luna-alias-underlying-backend-unknown",
+  "skill_revision": "clinic-source-only-protocol-v1; installed-deck-skill-not-invoked",
+  "generation_status": "passed",
+  "validation_status": "passed",
+  "outcome": "passed",
+  "artifacts": [
+    "research-note.md",
+    "deck-en.md",
+    "deck-zh.md",
+    "ledger.json",
+    "runtime.json"
+  ],
+  "failure": null
+}

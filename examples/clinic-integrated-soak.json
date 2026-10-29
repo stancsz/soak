@@ -1,0 +1,21 @@
+{
+  "duration_seconds": 1800,
+  "timeout_seconds": 420,
+  "drain_seconds": 420,
+  "interval_seconds": 1,
+  "max_runs": 3,
+  "command": [
+    "python",
+    "examples/clinic_workflow_adapter.py"
+  ],
+  "cases": [
+    {
+      "id": "fresh-integrated-clinic-demo",
+      "trial_config": "examples/clinic-integrated.json"
+    }
+  ],
+  "gates": {
+    "min_iterations": 3,
+    "max_failure_rate": 0
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "fresh-integrated-clinic-agent-and-render",
+  "generation_command": [
+    "{python}",
+    "{repo}/examples/clinic_integrated_adapter.py",
+    "generate"
+  ],
+  "validation_command": [
+    "{python}",
+    "{repo}/examples/clinic_integrated_adapter.py",
+    "validate"
+  ],
+  "generation_timeout": 360,
+  "validation_timeout": 30,
+  "target_revision": "fresh-synthetic-clinic-agent-sources-and-bilingual-render-v1",
+  "harness_revision": "soak-trial-framework-current-worktree",
+  "model_revision": "codex-luna-alias-underlying-backend-unknown",
+  "skill_revision": "custom-source-protocol; installed-demo-skill-not-invoked",
+  "brief": {
+    "evidence_category": "fresh_integrated_agent_and_render",
+    "source_protocol": "custom-source-protocol; installed-demo-skill-not-invoked",
+    "endurance": "unverified",
+    "visual_review": "unverified"
+  }
+}

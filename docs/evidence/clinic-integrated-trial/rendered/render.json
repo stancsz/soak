@@ -1,0 +1,26 @@
+{
+  "status": "passed",
+  "failure_category": null,
+  "evidence_category": "render_of_actual_real_agent_synthetic_sources_not_new_agent_generation",
+  "visual_review": "unverified",
+  "source_sha256": {
+    "deck-en.md": "e2e06cc76a7f6a942432620da6aa1f30693fcf788ef802094e3f389007deb25b",
+    "deck-zh.md": "2291a7a97a8e127b8d72fc31263ef3da24882787b4fad5d99f162327ac02a75c",
+    "ledger.json": "033a501c8dae56a543659ca6bbe10ac514b9ccdee665584d21a45cd698eeb537"
+  },
+  "versions": {
+    "node": "v25.1.0",
+    "marp": "@marp-team/marp-cli v4.5.1 (w/ @marp-team/marp-core v4.4.0)",
+    "pdfinfo": "pdfinfo version 26.07.0",
+    "pdftoppm": "pdftoppm version 26.07.0"
+  },
+  "page_counts": {
+    "deck-en.pdf": 9,
+    "deck-zh.pdf": 9
+  },
+  "resource_bounds": {
+    "timeout_seconds_per_command": 150,
+    "max_pages_per_pdf": 40,
+    "render_dpi": 150
+  }
+}
