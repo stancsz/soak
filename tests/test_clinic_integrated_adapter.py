@@ -45,6 +45,83 @@ class IntegratedClinicTests(unittest.TestCase):
             self.assertTrue(verified["passed"], verified)
             self.assertTrue(verified["checks"]["generated_manifest_matches_actual"])
 
+    def prepare_valid_validation_stages(self, root):
+        trial = json.loads((root / "source-trial/trial.json").read_text(encoding="utf-8"))
+        hashes = trial["artifact_sha256"]
+        stages = {"generation": {"status": "passed"}, "source_validation": {"status": "passed"},
+                  "render": {"status": "passed"}, "mechanical_validation": {"status": "passed"},
+                  "source_to_render_sha256": hashes}
+        rendered = root / "rendered"
+        rendered.mkdir(parents=True, exist_ok=True)
+        for name in adapter.SOURCE_NAMES:
+            source = root / "source-trial/workspace" / name
+            target = rendered / name
+            if name == "ledger.json":
+                target.write_bytes(source.read_bytes())
+            else:
+                target.write_text(adapter.renderer.style_source(source.read_text(encoding="utf-8")), encoding="utf-8")
+        (rendered / "render.json").write_text(json.dumps({"source_sha256": hashes, "page_counts": {"deck-en.pdf": 1, "deck-zh.pdf": 1}}), encoding="utf-8")
+        for name in ("deck-en.pdf", "deck-zh.pdf", "deck-en-page-1.png", "deck-zh-page-1.png"):
+            (rendered / name).write_bytes(b"artifact")
+        (root / "stages.json").write_text(json.dumps(stages), encoding="utf-8")
+
+    def test_committed_successful_receipt_revalidates_without_mutation(self):
+        root = Path(__file__).resolve().parents[1] / "docs/evidence/clinic-integrated-trial"
+        receipt_path = root / "trial.json"
+        before = adapter.digest(receipt_path)
+        generated = json.loads(receipt_path.read_text(encoding="utf-8"))
+        with patch.object(adapter.renderer, "validate", return_value={"passed": True}):
+            result = adapter.validate(root, generated)
+        self.assertTrue(result["checks"]["successful_trial_required"], result)
+        self.assertTrue(result["passed"], result)
+        self.assertEqual(adapter.digest(receipt_path), before)
+
+    def test_live_passed_manifest_still_validates(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            self.setup_fixture(root)
+            self.prepare_valid_validation_stages(root)
+            generated = {"passed": True, "artifacts": adapter._artifact_paths(root) + ["stages.json"],
+                         "generation_status": "passed", "validation_status": "passed", "outcome": "passed"}
+            with patch.object(adapter.renderer, "validate", return_value={"passed": True}):
+                result = adapter.validate(root, generated)
+            self.assertTrue(result["checks"]["successful_trial_required"], result)
+
+    def test_unsuccessful_or_contradictory_receipts_fail_closed(self):
+        receipts = (
+            {"generation_status": "failed", "validation_status": "passed", "outcome": "passed"},
+            {"generation_status": "passed", "validation_status": "unverified", "outcome": "passed"},
+            {"generation_status": "passed", "validation_status": "passed", "outcome": "failed"},
+            {"generation_status": "passed", "validation_status": "passed", "outcome": "passed", "passed": False},
+            {"passed": True, "generation_status": "failed", "validation_status": "passed", "outcome": "passed"},
+            {"passed": "true"},
+        )
+        for receipt in receipts:
+            with self.subTest(receipt=receipt), tempfile.TemporaryDirectory() as directory:
+                root = Path(directory)
+                self.setup_fixture(root)
+                self.prepare_valid_validation_stages(root)
+                generated = {"passed": True, "artifacts": adapter._artifact_paths(root) + ["stages.json"], **receipt}
+                (root / "source-trial/trial.json").write_text(json.dumps({
+                    **receipt,
+                    "artifact_sha256": json.loads((root / "source-trial/trial.json").read_text())["artifact_sha256"],
+                }), encoding="utf-8")
+                with patch.object(adapter.renderer, "validate", return_value={"passed": True}):
+                    result = adapter.validate(root, generated)
+                self.assertFalse(result["checks"]["successful_trial_required"], result)
+                self.assertFalse(result["passed"], result)
+
+    def test_live_manifest_rejects_partial_contradictory_statuses(self):
+        root = Path(__file__).resolve().parents[1] / "docs/evidence/clinic-integrated-trial"
+        receipt = json.loads((root/"trial.json").read_text(encoding="utf-8"))
+        for field in ("generation_status", "validation_status", "outcome"):
+            for value in ("failed", "unverified", None):
+                with self.subTest(field=field, value=value):
+                    payload = {"passed": True, "artifacts": receipt["artifacts"], field: value}
+                    result = adapter.validate(root, payload)
+                    self.assertFalse(result["passed"], result)
+                    self.assertFalse(result["checks"]["successful_trial_required"], result)
+
     def test_source_failure_prevents_rendering(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

@@ -34,5 +34,7 @@
     "upstream model behind gateway alias unknown",
     "no comparative ranking or top-percentile claim",
     "denied skill edits remain unapplied"
-  ]
+  ],
+  "current_nonauthor_acceptance": "docs/acceptance-review-2026-10-29.md",
+  "current_parent_regression_count": 42
 }

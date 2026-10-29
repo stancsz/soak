@@ -135,9 +135,21 @@ def validate(workspace, generated):
         source_root = (workspace / "source-trial/workspace").resolve()
         render_root = (workspace / "rendered").resolve()
         actual_artifacts = _artifact_paths(workspace) + ["stages.json"]
+        trial_passed = (trial.get("generation_status") == "passed" and
+                        trial.get("validation_status") == "passed" and
+                        trial.get("outcome") == "passed")
+        live_manifest = isinstance(generated, dict) and generated.get("passed") is True
+        saved_receipt = (isinstance(generated, dict) and "passed" not in generated and
+                         generated.get("generation_status") == "passed" and
+                         generated.get("validation_status") == "passed" and
+                         generated.get("outcome") == "passed")
+        live_receipt_consistent = isinstance(generated, dict) and all(
+            generated.get(field, "passed") == "passed"
+            for field in ("generation_status", "validation_status", "outcome"))
+        successful_trial = trial_passed and live_receipt_consistent and (live_manifest or saved_receipt)
         checks = {"generated_manifest_matches_actual": set(actual_artifacts) == set(artifacts) and len(actual_artifacts) == len(artifacts),
-                  "successful_trial_required": generated.get("passed") is True,
-                  "generation_and_validation_passed": trial.get("generation_status") == "passed" and trial.get("validation_status") == "passed" and trial.get("outcome") == "passed",
+                  "successful_trial_required": successful_trial,
+                  "generation_and_validation_passed": trial_passed,
                   "stage_statuses_passed": stages["generation"]["status"] == "passed" and stages["source_validation"]["status"] == "passed" and stages["render"]["status"] == "passed" and stages["mechanical_validation"]["status"] == "passed",
                   "all_fresh_source_artifacts_manifested": all("source-trial/workspace/" + name in manifested for name in SOURCE_NAMES),
                   "all_render_artifacts_manifested": all("rendered/" + name in manifested for name in ("deck-en.md", "deck-zh.md", "ledger.json", "render.json", "deck-en.pdf", "deck-zh.pdf"))}
