@@ -19,3 +19,13 @@ Implement an adapter executable that reads one JSON case from stdin and writes o
 Configure duration, per-iteration timeout, interval, and optionally max_runs in JSON. Iterations run sequentially; a deadline bounds the current process timeout. Process descendants may survive a timeout depending on the operating system, so adapters must manage their own children. The framework does not enforce model spend or token budgets: use provider-side limits and an explicit bounded test budget. Never place credentials in configuration, cases, or adapter details. Events and summaries may contain case IDs and adapter details; store them appropriately.
 
 A passing run means only that the adapter reported success on every completed iteration. Design cases and checks for your workload, record model/harness versions and environment separately, and compare latency and failure patterns over time. See [the soak-testing skill](skills/soak-testing/SKILL.md).
+
+## Model endpoint example
+
+`examples/model_adapter.py` calls an OpenAI-compatible chat endpoint using only the standard library. Set `SOAK_BASE_URL` (including `/v1`), `SOAK_MODEL`, and optionally `SOAK_API_KEY` in the environment, then run:
+
+```sh
+python -m soak.cli examples/model.json --output runs/model-smoke
+```
+
+This configuration permits at most five requests over 60 seconds. Its check only tests whether the expected marker appears; replace cases and evaluation for meaningful acceptance. The endpoint may be a model server or an agent harness exposing this protocol. For CLI harnesses, implement the same JSON adapter contract described above. Model endpoint testing alone does not exercise an agent's tools, persistent state, or recovery behavior.

@@ -1,0 +1,8 @@
+{
+  "duration_seconds": 60,
+  "timeout_seconds": 35,
+  "interval_seconds": 5,
+  "max_runs": 5,
+  "command": ["python", "examples/model_adapter.py"],
+  "cases": [{"id": "instruction-following", "messages": [{"role": "user", "content": "Reply with exactly SOAK_OK"}], "expected_contains": "SOAK_OK"}]
+}
