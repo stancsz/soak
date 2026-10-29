@@ -1,0 +1,14 @@
+{
+  "en": {
+    "pages": 8,
+    "numeric_checks": "passed",
+    "page_order_and_text": "passed",
+    "aspect_ratio": "16:9"
+  },
+  "zh": {
+    "pages": 8,
+    "numeric_checks": "passed",
+    "page_order_and_text": "passed",
+    "aspect_ratio": "16:9"
+  }
+}

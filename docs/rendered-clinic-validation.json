@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-29",
+  "tests_passed": 34,
+  "render_trial": "docs/evidence/clinic-rendered-trial/trial.json",
+  "visual_review": "docs/evidence/clinic-rendered-trial/visual-review.json",
+  "independent_pdf_checks": "docs/evidence/clinic-rendered-trial/pdf-text-checks.json",
+  "pdf_pages": {
+    "english": 8,
+    "chinese": 8
+  },
+  "visual_outcome": "passed",
+  "actual_failure_trial": {
+    "run": "runs/clinic-render-missing-capability",
+    "category": "renderer_unavailable",
+    "generation": "failed",
+    "validation": "unverified",
+    "exit_code": 1
+  },
+  "regressions": [
+    "CJK emphasis normalized to explicit strong markup",
+    "real CLI protocol produces explicit failure receipt when renderer missing",
+    "nonzero Marp exit fails without fake PDFs",
+    "incomplete page-image coverage fails mechanical validation"
+  ],
+  "limits": [
+    "rendered retained real-agent synthetic sources, not fresh generation in the same trial",
+    "text-only slides; no generated app UI screens",
+    "visual acceptance applies only to reviewed artifact hashes, not future runs",
+    "no live market evidence, long-duration qualification or percentile ranking",
+    "denied Northstar and Soak skill edits remain unapplied"
+  ]
+}

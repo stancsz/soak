@@ -1,0 +1,21 @@
+{
+  "target_revision": "approved-real-agent-synthetic-sources-1dc9cf4; source hashes recorded per file",
+  "harness_revision": "soak-trial-framework-current-worktree",
+  "model_revision": "not-applicable-no-agent-generation",
+  "skill_revision": "not-applicable-no-skill-edit",
+  "brief": {
+    "evidence_category": "render_of_actual_real_agent_synthetic_sources_not_new_agent_generation"
+  },
+  "generation_command": [
+    "{python}",
+    "{repo}/examples/clinic_render_adapter.py",
+    "generate"
+  ],
+  "validation_command": [
+    "{python}",
+    "{repo}/examples/clinic_render_adapter.py",
+    "validate"
+  ],
+  "generation_timeout": 180,
+  "validation_timeout": 10
+}

@@ -83,5 +83,6 @@
     "gateway alias codex-luna; underlying backend identity unknown",
     "short trials; no endurance or comparative percentile claim",
     "Northstar and separate skill edits remain policy-denied and unapplied"
-  ]
+  ],
+  "followup_render_validation": "docs/rendered-clinic-validation.json"
 }
