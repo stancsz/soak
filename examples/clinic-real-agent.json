@@ -1,0 +1,31 @@
+{
+  "name": "clinic-codex-real-agent-source-drafts",
+  "generation_command": [
+    "{python}",
+    "{repo}/examples/clinic_codex_adapter.py",
+    "generate"
+  ],
+  "validation_command": [
+    "{python}",
+    "{repo}/examples/clinic_codex_adapter.py",
+    "validate"
+  ],
+  "generation_timeout": 210,
+  "validation_timeout": 10,
+  "target_revision": "clinic-source-drafts-v1",
+  "harness_revision": "soak-real-agent-source-only-v1",
+  "model_revision": "codex-luna-alias-underlying-backend-unknown",
+  "skill_revision": "clinic-source-only-protocol-v1; installed-deck-skill-not-invoked",
+  "brief": {
+    "clinic_hypothesis": "Synthetic hypothesis: clinic staff may lose follow-up continuity between inquiry, booking, and visit; test ownership, workflow fit, and escalation needs before proposing a pilot.",
+    "inquiries": 86,
+    "booked": 62,
+    "visited": 41,
+    "associated_revenue": 16400,
+    "currency": "USD",
+    "period": "same synthetic reporting period",
+    "sample": true,
+    "generation_timeout": 180,
+    "sample_data": "Synthetic only: 86 inquiries, 62 booked, 41 visited, USD 16400 associated revenue, same synthetic reporting period. No real clinic, staff, or patient data."
+  }
+}

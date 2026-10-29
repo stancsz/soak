@@ -165,6 +165,10 @@ def run_trial(config_path, output_path):
                 parsed = _parse_json(validation.stdout)
                 if validation.returncode != 0 or not isinstance(parsed, dict) or not isinstance(parsed.get("passed"), bool):
                     raise ValueError("validator failed or JSON must contain boolean passed")
+                for name, digest in record["artifact_sha256"].items():
+                    candidate = (workspace/name).resolve()
+                    if not candidate.is_relative_to(workspace.resolve()) or _file_digest(candidate) != digest:
+                        raise ValueError("validator changed generated artifacts")
                 record["validation_status"] = "passed" if parsed["passed"] else "failed"
                 if not parsed["passed"]:
                     record["failure"] = "validation: validator reported failed"

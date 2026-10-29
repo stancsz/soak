@@ -30,3 +30,7 @@ Northstar/Soak skill integration edits were rejected by automatic approval with 
 ## Isolated workflow increment
 
 One bounded codex-luna CLI worker through the configured local gateway authored the initial trial runner, offline fixture, guide and tests. Parent review added unittest discovery, safe exception recording, fingerprints and repeated-trial integration. Twenty regressions plus explicit successful and failed trial executions passed their scoped checks; see isolated-trial-validation.json. Fresh synthetic files do not establish live-agent generation quality. Original remaining criteria and the denied skill-edit boundary stay open.
+
+## Real-agent source workflow acceptance
+
+The configured codex-luna gateway route now has a real CLI generator, separate deterministic validator, isolated live-trial configuration and repeatability preset. The parent independently inspected a passing fresh live trial and reconciled framework, adapter and artifact hashes; selected synthetic source outputs and the original receipt are retained under docs/evidence/clinic-source-trial. Earlier grader failures and one cancelled attempt remain in the history. Current evidence: real-agent-validation.json (28 regressions and an offline installed-wheel smoke test). This accepts source generation only; image generation, rendered PDFs, actual external research, the installed demo skill, long-duration runs, peer ranking and denied Northstar/Soak skill edits remain open.

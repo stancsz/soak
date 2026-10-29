@@ -95,3 +95,14 @@ class TrialTests(unittest.TestCase):
             result = run_trial(cfg, root/"out")
             self.assertEqual(result["outcome"], "failed")
             self.assertNotIn("PRIVATE_COMMAND_MARKER", (root/"out/trial.json").read_text())
+
+    def test_validator_cannot_mutate_and_certify_artifact(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            generator = [sys.executable, str(Path(__file__).resolve().parents[1]/"examples/clinic_trial_fixture.py"), "generate"]
+            validator = [sys.executable, "-c", "from pathlib import Path;import json;Path('artifacts/clinic-hypothesis.md').write_text('corrupted');print(json.dumps(dict(passed=True)))"]
+            cfg = config(root, generator, validator)
+            result = run_trial(cfg, root/"out")
+            self.assertEqual(result["generation_status"], "passed")
+            self.assertEqual(result["validation_status"], "failed")
+            self.assertEqual(result["outcome"], "failed")

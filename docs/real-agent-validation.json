@@ -1,0 +1,87 @@
+{
+  "date": "2026-10-29",
+  "tests_passed": 28,
+  "framework_sha256": "c59da4cfc79cf9ef26f3eee900bb36924ed6ba21275f15066cd12ebd57698aef",
+  "verified_live_trial": "docs/evidence/clinic-source-trial/trial.json",
+  "real_generation_outcome": "passed",
+  "validation_outcome": "passed",
+  "parent_inspection": [
+    "all five generated artifacts read",
+    "ledger equals approved synthetic input",
+    "both drafts preserve counts, period, currency, staff review, clinical escalation and unaided price including zero",
+    "research note separates hypothesis, source availability and planned research",
+    "artifact and adapter source hashes independently reconciled"
+  ],
+  "fault_checks": [
+    "copied live ledger changed to 42 visits: rejected",
+    "missing native CLI binary: generation failed, validation unverified",
+    "validator mutation plus claimed success: rejected by regression"
+  ],
+  "live_trial_history": [
+    {
+      "run": "clinic-real-agent-1",
+      "generation_status": "passed",
+      "original_validation_status": "failed",
+      "original_outcome": "failed",
+      "regraded_unchanged_sources": true,
+      "note": null
+    },
+    {
+      "run": "clinic-real-agent-2",
+      "generation_status": "passed",
+      "original_validation_status": "failed",
+      "original_outcome": "failed",
+      "regraded_unchanged_sources": true,
+      "note": null
+    },
+    {
+      "run": "clinic-real-agent-3",
+      "generation_status": "passed",
+      "original_validation_status": "failed",
+      "original_outcome": "failed",
+      "regraded_unchanged_sources": true,
+      "note": null
+    },
+    {
+      "run": "clinic-real-agent-4",
+      "generation_status": "failed",
+      "original_validation_status": "unverified",
+      "original_outcome": "failed",
+      "regraded_unchanged_sources": false,
+      "note": "parent cancelled after a regression failure"
+    },
+    {
+      "run": "clinic-real-agent-final",
+      "generation_status": "passed",
+      "original_validation_status": "failed",
+      "original_outcome": "failed",
+      "regraded_unchanged_sources": true,
+      "note": null
+    },
+    {
+      "run": "clinic-real-agent-verified",
+      "generation_status": "passed",
+      "original_validation_status": "passed",
+      "original_outcome": "passed",
+      "regraded_unchanged_sources": false,
+      "note": null
+    }
+  ],
+  "package_check": {
+    "offline_wheel": "passed",
+    "isolated_install_and_import": "passed",
+    "installed_runner_smoke": "passed",
+    "entry_points": [
+      "soak",
+      "soak-trial"
+    ]
+  },
+  "limits": [
+    "source generation only; no PDFs/images/visual verification",
+    "approved synthetic brief only; no actual market research or buyer validation",
+    "custom source protocol; installed demo skill not invoked or modified",
+    "gateway alias codex-luna; underlying backend identity unknown",
+    "short trials; no endurance or comparative percentile claim",
+    "Northstar and separate skill edits remain policy-denied and unapplied"
+  ]
+}

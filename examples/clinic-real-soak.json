@@ -1,0 +1,21 @@
+{
+  "duration_seconds": 600,
+  "timeout_seconds": 240,
+  "drain_seconds": 240,
+  "interval_seconds": 1,
+  "max_runs": 3,
+  "command": [
+    "python",
+    "examples/clinic_workflow_adapter.py"
+  ],
+  "cases": [
+    {
+      "id": "real-agent-clinic-source-drafts",
+      "trial_config": "examples/clinic-real-agent.json"
+    }
+  ],
+  "gates": {
+    "min_iterations": 3,
+    "max_failure_rate": 0
+  }
+}

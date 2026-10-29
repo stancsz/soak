@@ -35,5 +35,7 @@
     "no live model endurance or top-percentile evidence",
     "CLI worker used gateway codex-luna; stopped after repeated patch failures; no worker edits accepted",
     "Northstar and Soak skill edits remain policy-denied and unapplied"
-  ]
+  ],
+  "historical_record": true,
+  "current_validation_record": "docs/real-agent-validation.json"
 }

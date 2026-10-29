@@ -49,3 +49,9 @@ For real artifact regression, see [the clinic subject](docs/clinic-subject.md). 
 ## Isolated generation and validation trials
 
 Run `python -m soak.trial examples/clinic-trial.json --output runs/clinic-trial` for one fresh synthetic clinic trial, or `python -m soak.cli examples/clinic-workflow.json --output runs/clinic-workflow` for three isolated iterations. Receipts distinguish generation and validation, record revision labels and source/artifact fingerprints, and leave missing validation unverified. See [configuration, failures and real-harness substitution](docs/isolated-trials.md).
+
+## Install the framework
+
+From a checkout, run `python -m pip install .` to install the independent framework package and the `soak` and `soak-trial` commands. The Python API is `soak.runner.run(config, output)` or `soak.trial.run_trial(config_path, output_path)`. Supply your own trusted adapter commands using absolute paths when working outside this checkout. Repository examples and subject-specific generators remain in the source checkout; `{repo}` resolves to the framework package parent and is intended for checkout-based examples, not arbitrary installed projects.
+
+The agent skill is a separate source artifact at `skills/soak-testing/SKILL.md`; framework installation does not install or modify host skills. Current real-agent source-trial usage is documented in [the clinic CLI guide](docs/real-agent-clinic.md). Full visual workflow and Northstar skill changes remain separate acceptance work.
