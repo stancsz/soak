@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-29",
+  "implementation_sha256": "e321bd7585b406d01515f1f07b183e27bed611c04a3fff58cc5dba7c5a0040de",
+  "tests_passed": 11,
+  "receipts_checked_independently_by_parent": true,
+  "runs": [
+    {
+      "run": "clinic-artifacts-final",
+      "iterations": 94,
+      "failures": 0,
+      "elapsed_seconds": 30.0006,
+      "outcome": "pass",
+      "termination": "duration",
+      "p95_seconds": 0.1469920999952592,
+      "failure_rate": 0.0,
+      "gate_violations": []
+    },
+    {
+      "run": "self-soak-final",
+      "iterations": 292,
+      "failures": 233,
+      "elapsed_seconds": 60.0007,
+      "outcome": "fail",
+      "termination": "duration",
+      "p95_seconds": 0.47671290000289446,
+      "failure_rate": 0.797945205479452,
+      "gate_violations": [
+        "max_failure_rate"
+      ]
+    }
+  ],
+  "limits": [
+    "short artifact replay and controlled subprocess faults only",
+    "no fresh agent generation or visual quality proof",
+    "no live model endurance or top-percentile evidence",
+    "CLI worker used gateway codex-luna; stopped after repeated patch failures; no worker edits accepted",
+    "Northstar and Soak skill edits remain policy-denied and unapplied"
+  ]
+}

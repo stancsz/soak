@@ -34,6 +34,48 @@ class RunnerTests(unittest.TestCase):
         _, events = self.execute(config)
         self.assertEqual(events[0]["status"], "timeout")
 
+    def test_insufficient_exposure_cannot_pass(self):
+        config = self.config('import json; print(json.dumps(dict(passed=True)))')
+        config["gates"] = {"min_iterations": 3, "min_elapsed_seconds": 10}
+        summary, _ = self.execute(config)
+        self.assertEqual(summary["outcome"], "fail")
+        self.assertEqual(summary["gate_violations"], ["min_iterations", "min_elapsed_seconds"])
+
+    def test_latency_gate(self):
+        config = self.config('import json; print(json.dumps(dict(passed=True)))')
+        config["gates"] = {"max_p95_seconds": 0}
+        summary, _ = self.execute(config)
+        self.assertIn("max_p95_seconds", summary["gate_violations"])
+
+    def test_noisy_adapter_is_bounded(self):
+        config = self.config('import sys; sys.stdout.write("x" * 1000000)')
+        config.update(max_runs=1, output_limit_bytes=1024)
+        summary, events = self.execute(config)
+        self.assertEqual(summary["outcome"], "fail")
+        self.assertEqual(events[0]["status"], "error")
+
+    def test_interrupted_run_has_failed_summary(self):
+        from unittest.mock import patch
+        with patch("soak.runner.invoke", side_effect=KeyboardInterrupt):
+            summary, events = self.execute(self.config('pass'))
+        self.assertEqual(summary["termination"], "interrupted")
+        self.assertIn("interrupted", summary["gate_violations"])
+        self.assertEqual(events, [])
+
+    def test_rejects_fractional_iteration_limits(self):
+        config = self.config('pass')
+        for value in (True, 1.5, "2"):
+            config["max_runs"] = value
+            with tempfile.TemporaryDirectory() as tmp, self.assertRaises(ValueError):
+                run(config, Path(tmp) / "run")
+
+    def test_bounded_drain_finishes_inflight_iteration(self):
+        config = self.config('import time,json; time.sleep(0.15); print(json.dumps(dict(passed=True)))')
+        config.update(duration_seconds=0.1, drain_seconds=0.5, max_runs=1)
+        summary, events = self.execute(config)
+        self.assertEqual(events[0]["status"], "pass")
+        self.assertEqual(summary["outcome"], "pass")
+
     def test_rejects_duplicate_cases(self):
         config = self.config('pass')
         config["cases"] *= 2

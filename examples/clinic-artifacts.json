@@ -1,0 +1,32 @@
+{
+  "duration_seconds": 30,
+  "timeout_seconds": 5,
+  "interval_seconds": 0.2,
+  "max_runs": 100,
+  "command": [
+    "python",
+    "examples/artifact_adapter.py"
+  ],
+  "cases": [
+    {
+      "id": "clinic-bilingual-artifacts",
+      "documents": [
+        "outputs/docs/v4/stillpoint-en.md",
+        "outputs/docs/v4/stillpoint-zh.md"
+      ],
+      "required_text": {
+        "outputs/docs/v4/stillpoint-en.md": [
+          "currency, including zero",
+          "Fictional data",
+          "staff remain in control"
+        ]
+      }
+    }
+  ],
+  "gates": {
+    "min_iterations": 20,
+    "min_elapsed_seconds": 20,
+    "max_failure_rate": 0
+  },
+  "drain_seconds": 5
+}
