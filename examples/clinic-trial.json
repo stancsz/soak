@@ -1,0 +1,14 @@
+{
+  "target_revision": "clinic-followup-hypothesis-v1",
+  "harness_revision": "soak-trial-v1",
+  "model_revision": "synthetic-fixture-no-model",
+  "skill_revision": "synthetic-fixture-no-skill",
+  "brief": {
+    "clinic_hypothesis": "A bilingual, consent-aware follow-up workflow may help independent clinics answer prospective buyers faster.",
+    "sample_data": "Synthetic only: 3 example inquiries, 2 follow-up states, 0 real people."
+  },
+  "generation_command": ["{python}", "{repo}/examples/clinic_trial_fixture.py", "generate"],
+  "validation_command": ["{python}", "{repo}/examples/clinic_trial_fixture.py", "validate"],
+  "generation_timeout": 20,
+  "validation_timeout": 20
+}

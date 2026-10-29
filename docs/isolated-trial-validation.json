@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-29",
+  "tests_passed": 20,
+  "independent_parent_checks": [
+    "artifact and local adapter source digests reconciled",
+    "three distinct workspaces and receipts",
+    "explicit validation failure retained"
+  ],
+  "trials": [
+    {
+      "run": "clinic-trial-final",
+      "generation": "passed",
+      "validation": "passed",
+      "outcome": "passed",
+      "artifacts": 2
+    },
+    {
+      "run": "clinic-trial-validator-failure",
+      "generation": "passed",
+      "validation": "failed",
+      "outcome": "failed",
+      "artifacts": 2
+    }
+  ],
+  "soak_iterations": 3,
+  "limits": [
+    "synthetic fresh generation only; no live model/agent trial",
+    "no visual/research/endurance/rank claims",
+    "independent CLI worker authored initial code; parent reviewed and repaired it",
+    "denied skill edits remain unapplied"
+  ]
+}

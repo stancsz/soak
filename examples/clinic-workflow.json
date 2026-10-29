@@ -1,0 +1,21 @@
+{
+  "duration_seconds": 30,
+  "timeout_seconds": 10,
+  "drain_seconds": 10,
+  "interval_seconds": 0.1,
+  "max_runs": 3,
+  "command": [
+    "python",
+    "examples/clinic_workflow_adapter.py"
+  ],
+  "cases": [
+    {
+      "id": "fresh-clinic-fixture",
+      "trial_config": "examples/clinic-trial.json"
+    }
+  ],
+  "gates": {
+    "min_iterations": 3,
+    "max_failure_rate": 0
+  }
+}

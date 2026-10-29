@@ -25,9 +25,9 @@ def terminate(process):
     process.wait(timeout=5)
 
 
-def invoke(command, payload, timeout, limit=65536):
+def invoke(command, payload, timeout, limit=65536, *, cwd=None):
     process = subprocess.Popen(command, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
-                               stderr=subprocess.PIPE, start_new_session=os.name != "nt")
+                               stderr=subprocess.PIPE, start_new_session=os.name != "nt", cwd=cwd)
     exceeded = threading.Event()
     buffers = [bytearray(), bytearray()]
 
