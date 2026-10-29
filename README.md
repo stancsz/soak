@@ -45,3 +45,7 @@ This injects pass, evaluation failure, malformed JSON, noisy output and timeout 
 Adapter stdout and stderr are each limited by `output_limit_bytes` (default 65536). Oversized output fails the iteration. Timeout cleanup targets POSIX process groups or a live Windows parent tree; Windows descendants may escape when their parent has already exited. Adapters must manage their own persistent services. Exact p95 storage currently grows with iteration count.
 
 For real artifact regression, see [the clinic subject](docs/clinic-subject.md). Set `SOAK_SUBJECT_ROOT` and run the provided clinic configuration. This checks existing sources and PDF headers; it does not render PDFs, evaluate visuals, verify research claims or regenerate the product. Missing files and paths outside the subject root fail the adapter.
+
+## Isolated generation and validation trials
+
+Run `python -m soak.trial examples/clinic-trial.json --output runs/clinic-trial` for one fresh synthetic clinic trial, or `python -m soak.cli examples/clinic-workflow.json --output runs/clinic-workflow` for three isolated iterations. Receipts distinguish generation and validation, record revision labels and source/artifact fingerprints, and leave missing validation unverified. See [configuration, failures and real-harness substitution](docs/isolated-trials.md).
