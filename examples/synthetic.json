@@ -1,0 +1,8 @@
+{
+  "duration_seconds": 10,
+  "timeout_seconds": 2,
+  "interval_seconds": 0.05,
+  "max_runs": 4,
+  "command": ["python", "examples/adapter.py"],
+  "cases": [{"id": "synthetic", "expected": "ok"}]
+}
