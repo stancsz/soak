@@ -1,6 +1,8 @@
+<p align="center"><img src="site/assets/soak-mark.svg" alt="Soak: repeated agent runs with inspectable outcomes" width="420"></p>
+
 # Soak
 
-[Unpublished research draft (PDF)](paper/main.pdf) · [LaTeX source](paper/main.tex) · [Product and research values](#product-and-research-values)
+[Official site](https://stancsz.github.io/soak/) · [Market position and maturity](docs/market-position.md) · [Unpublished research draft (PDF)](paper/main.pdf) · [LaTeX source](paper/main.tex) · [Product and research values](#product-and-research-values)
 
 Soak repeatedly exercises an agent harness and its model over a bounded period, recording each outcome and a summary. It is a small starting point for finding failures and latency changes that short tests can miss. The included adapter is synthetic; it does not test a real model.
 

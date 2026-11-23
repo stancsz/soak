@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#101716">
+  <meta name="description" content="Soak runs bounded, repeated checks against an agent harness and keeps an event record for every iteration.">
+  <link rel="canonical" href="https://stancsz.github.io/soak/">
+  <link rel="icon" href="assets/soak-mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/site.css">
+  <title>Soak — Repeated runs. Receipts for every turn.</title>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header wrap">
+    <a class="brand" href="#top"><img src="assets/soak-mark.svg" alt="" width="42" height="42"><span>SOAK<small>REPEAT / RECORD / REVIEW</small></span></a>
+    <nav aria-label="Main navigation"><a href="#how">How it works</a><a href="#evidence">Evidence</a><a href="#status">Status</a><a href="https://github.com/stancsz/soak">Source <span aria-hidden="true">↗</span></a></nav>
+  </header>
+  <main id="main">
+    <section class="hero wrap" id="top" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="pulse"></span> REPEATED AGENT CHECKS / BOUNDED EXPOSURE</p>
+        <h1 id="hero-title">Short checks<br>miss the <em>long run.</em></h1>
+        <p class="lede">Soak repeats a harness and its evaluator over a bounded window. It records each result, summarizes the run, and fails when the gates you set are missed.</p>
+        <div class="hero-actions"><a class="button primary" href="https://github.com/stancsz/soak#run-the-example">Run the synthetic example <span aria-hidden="true">↗</span></a><a class="button secondary" href="https://github.com/stancsz/soak/blob/main/docs/DESIGN.md">Read the design</a></div>
+        <p class="notice"><strong>Pass means:</strong> the configured adapter reported success on every completed iteration. It is not a semantic quality guarantee.</p>
+      </div>
+      <div class="run-console">
+        <div class="console-header"><span>RUN / EXAMPLE-041</span><span class="console-dot"><i></i> SYNTHETIC FIXTURE</span></div>
+        <div class="run-meta"><div><small>WINDOW</small><b>00:00:60</b></div><div><small>ITERATIONS</small><b>05 / 05</b></div><div><small>GATE</small><b>FAILURE RATE ≤ 0</b></div></div>
+        <div class="timeline" role="img" aria-label="Illustrative five-iteration timeline with four adapter passes and one timeout. This is a diagram, not a recorded test result.">
+          <div class="timeline-title"><span>EVENT STREAM</span><span>ILLUSTRATIVE, NOT A RECEIPT</span></div>
+          <div class="event pass"><span>01</span><i></i><b>adapter returned pass</b><time>00:02.1</time></div>
+          <div class="event pass"><span>02</span><i></i><b>adapter returned pass</b><time>00:02.4</time></div>
+          <div class="event timeout"><span>03</span><i></i><b>iteration timed out</b><time>00:10.0</time></div>
+          <div class="event pass"><span>04</span><i></i><b>adapter returned pass</b><time>00:02.2</time></div>
+          <div class="event pass"><span>05</span><i></i><b>adapter returned pass</b><time>00:02.0</time></div>
+          <div class="summary-row"><span>SUMMARY / 4 PASS · 1 FAIL</span><strong>GATE MISSED</strong></div>
+        </div>
+        <p class="console-caption">Illustrative event log. The runner preserves failures instead of smoothing them away.</p>
+      </div>
+    </section>
+
+    <section class="stats wrap" aria-label="Project evidence">
+      <article><span class="stat-label">INTEGRATED EXERCISE</span><strong>1</strong><p>Bounded clinic workflow, with source generation and validation.</p></article>
+      <article><span class="stat-label">RENDERED PAGES REVIEWED</span><strong>18</strong><p>One set of bilingual materials, visually inspected.</p></article>
+      <article class="warning"><span class="stat-label">ENDURANCE STUDY</span><strong>—</strong><p>No multi-hour agent reliability or resource-drift study yet.</p></article>
+    </section>
+
+    <section class="how-section wrap" id="how" aria-labelledby="how-title">
+      <div class="section-head"><div><p class="eyebrow">BOUNDED BY DESIGN</p><h2 id="how-title">Every run has<br><em>an exposure limit.</em></h2></div><p>Soak is a small runner, not a benchmark that invents a definition of success. You supply the harness and evaluator; the configuration defines how long and under what gates to run.</p></div>
+      <div class="how-grid"><article><span>01</span><h3>Set the window</h3><p>Choose duration, per-iteration timeout, interval, drain window, and optional run cap.</p></article><article><span>02</span><h3>Keep each outcome</h3><p>The event log flushes every iteration; the summary stores counts, p95 latency, and gate violations.</p></article><article><span>03</span><h3>Review the failures</h3><p>Compare repeated results with model/harness versions and resource measures you collect.</p></article></div>
+      <div class="terminal"><div class="terminal-bar"><i></i><i></i><i></i><span>PYTHON / TERMINAL</span></div><pre><code>python -m soak.cli examples/synthetic.json --output runs/example</code></pre></div>
+    </section>
+
+    <section class="boundaries" id="evidence" aria-labelledby="boundaries-title"><div class="wrap boundary-layout">
+      <div><p class="eyebrow">WHAT THE FRAMEWORK DOES NOT DO</p><h2 id="boundaries-title">A runner is only<br><em>as good as its adapter.</em></h2><p>Soak does not grade semantic quality, enforce provider spend, or prove that a persistent harness recovered after failure. Put those checks in a trusted adapter and record the environment separately.</p><a class="link" href="https://github.com/stancsz/soak/blob/main/docs/market-position.md">See alternatives and the validation plan ↗</a></div>
+      <div class="limits-grid"><article><span>01</span><h3>Not a load generator</h3><p>Iterations are sequential. Use a dedicated load-testing tool when concurrent service pressure is the question.</p></article><article><span>02</span><h3>Not a model grader</h3><p>A pass is the adapter's boolean. Add independent checks for correctness, regressions, and recovery.</p></article><article><span>03</span><h3>Not unlimited</h3><p>Set provider-side spend limits. The framework does not enforce request budgets or own adapter child processes.</p></article></div>
+    </div></section>
+
+    <section class="status-section wrap" id="status" aria-labelledby="status-title"><div class="status-card"><div class="status-ribbon"><i></i> FRAMEWORK PROTOTYPE</div><div><p class="eyebrow">EVIDENCE BEFORE ENDURANCE CLAIMS</p><h2 id="status-title">One reviewed workflow.<br><em>Next: a real soak.</em></h2><p>The current trial exercised isolated agent generation, source validation, rendering, and review. It does not establish sustained reliability or adoption by agent teams.</p><a class="button primary" href="https://github.com/stancsz/soak/blob/main/docs/market-position.md">Market position and next experiment</a></div><div class="status-links"><a href="https://github.com/stancsz/soak/blob/main/paper/main.pdf">Research draft ↗</a><a href="https://github.com/stancsz/soak/blob/main/docs/integrated-clinic-trials.md">Integrated trial ↗</a><a href="https://github.com/stancsz/soak/issues">Issues and support ↗</a></div></div></section>
+  </main>
+  <footer><div class="wrap footer-inner"><a class="brand" href="#top"><img src="assets/soak-mark.svg" alt="" width="34" height="34"><span>SOAK<small>STAN CHEN / 2026</small></span></a><p>Bound exposure. Durable outcomes. Failure stays visible.</p><nav aria-label="Footer navigation"><a href="https://github.com/stancsz/soak">Source</a><a href="https://github.com/stancsz/soak/blob/main/CONTRIBUTING.md">Contribute</a><a href="https://github.com/stancsz/soak/blob/main/LICENSE">License</a></nav></div></footer>
+</body>
+</html>

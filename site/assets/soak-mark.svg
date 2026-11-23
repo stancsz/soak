@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 72" role="img" aria-labelledby="title desc">
+  <title id="title">Soak</title>
+  <desc id="desc">A bounded run with a visible event pulse and recorded outcomes.</desc>
+  <rect width="72" height="72" rx="18" fill="#182220" stroke="#34423c"/>
+  <path d="M14 41h10l6-17 9 31 8-22 5 8h7" fill="none" stroke="#92edbd" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="57" cy="41" r="4" fill="#ff9a63"/>
+  <text x="94" y="37" fill="#e9eee7" font-family="Segoe UI,Arial,sans-serif" font-size="30" font-weight="700" letter-spacing="2">SOAK</text>
+  <text x="95" y="56" fill="#abb7ad" font-family="Cascadia Code,Consolas,monospace" font-size="9" letter-spacing="2">REPEAT / RECORD / REVIEW</text>
+</svg>
