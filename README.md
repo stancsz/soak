@@ -1,4 +1,6 @@
-# Soak â€” Soak Testing Framework
+# Soak
+
+[Unpublished research draft (PDF)](paper/main.pdf) · [LaTeX source](paper/main.tex) · [Product and research values](#product-and-research-values)
 
 Soak repeatedly exercises an agent harness and its model over a bounded period, recording each outcome and a summary. It is a small starting point for finding failures and latency changes that short tests can miss. The included adapter is synthetic; it does not test a real model.
 
@@ -32,7 +34,7 @@ This configuration permits at most five requests over 60 seconds. Its check only
 
 ## Acceptance gates
 
-Optional `gates` configuration supports `min_iterations`, `min_elapsed_seconds`, `max_failure_rate` (0ï¿½1), and `max_p95_seconds`. Missing failure-rate gates default to zero tolerated failures. Set minimum exposure explicitly for a real soak; a short smoke run proves only its observed exposure. Summaries include failure rate, nearest-rank p95 iteration latency and gate violations. See [the design and remaining acceptance work](docs/DESIGN.md).
+Optional `gates` configuration supports `min_iterations`, `min_elapsed_seconds`, `max_failure_rate` (0 to 1), and `max_p95_seconds`. Missing failure-rate gates default to zero tolerated failures. Set minimum exposure explicitly for a real soak; a short smoke run proves only its observed exposure. Summaries include failure rate, nearest-rank p95 iteration latency and gate violations. See [the design and remaining acceptance work](docs/DESIGN.md).
 
 ## Self-test and real artifacts
 
@@ -63,3 +65,14 @@ The agent skill is a separate source artifact at `skills/soak-testing/SKILL.md`;
 ## Fresh integrated clinic trial
 
 `python -m soak.trial examples/clinic-integrated.json --output runs/clinic-integrated` runs fresh approved synthetic source generation, source validation, bilingual PDF rendering and mechanical validation in one isolated workspace. Requires the native Codex executable environment variable and local rendering dependencies described in [the integration guide](docs/integrated-clinic-trials.md). Stage failures retain their receipts; original source hashes and styled derivatives are checked separately. [The scoped acceptance record](docs/integrated-clinic-validation.json) includes one real integrated trial and review of all 18 pages. This does not establish endurance or finished UI-demo quality.
+
+## Product and research values
+
+Product value is a minimal, inspectable repetition loop with durable event accounting and explicit gates for exposure and latency.
+
+- **Bounded runs:** duration, per-iteration timeout, interval, drain window, and maximum run count are explicit.
+- **Inspectable evidence:** event log and summary preserve outcomes and gate violations.
+- **Honest acceptance:** a pass means the configured adapter reported success for completed iterations.
+- **No unsupported endurance claims:** the 18-page clinic trial was one bounded exercise, not an endurance or reliability study.
+
+[Unpublished research draft (PDF)](paper/main.pdf) · [LaTeX source](paper/main.tex). Not submitted to arXiv; no identifier is claimed.
